@@ -13,7 +13,8 @@ export default function App(){
     };
 
     const disableDates = (date) => {
-        return date.getDay()===2 
+        const d = new Date(date)
+        return d.getDay()===2 
     }
 
     return(
@@ -25,7 +26,7 @@ export default function App(){
           value={value}
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
-        //   shouldDisableDate={disableDates}
+          shouldDisableDate={disableDates}
           disablePast={true}
         /></LocalizationProvider>
         </div>
