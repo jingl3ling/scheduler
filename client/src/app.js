@@ -4,7 +4,7 @@ import Date from './date';
 export default function App(){
     return(
         <div>
-            Scheduler
+            <h1>Scheduler</h1>
             <Date/>
         </div>
     )

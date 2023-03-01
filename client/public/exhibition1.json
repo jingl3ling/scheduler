@@ -1,0 +1,35 @@
+{
+    "3/1/2023":{
+        "8am": {
+            "remaining": 9,
+            "visitors":
+            [{ "Ginger1234567890": 1 }]
+        },
+        "9am": {
+            "remaining": 10,
+            "visitors":[]
+        }
+    },
+    "3/2/2023":{
+        "8am": {
+            "remaining": 10,
+            "visitors":[]
+        },
+        "9am": {
+            "remaining": 8,
+            "visitors":
+            [{ "Jing8478684968": 2 }]
+        }
+    },
+    "3/3/2023":{
+        "8am": {
+            "remaining": 10,
+            "visitors":[]
+        },
+        "9am": {
+            "remaining": 9,
+            "visitors":
+            [{ "Jing8478684968": 1 }]
+        }
+    }
+}
