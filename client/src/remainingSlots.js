@@ -5,23 +5,24 @@ export default function App(props){
     const schedule = useSelector((state)=>state.schedule.schedule);
     const time = props.time.$d;
     const date = time.toLocaleDateString();
-    const [slots_arr, setSlots_arr] = useState({"8am":{"remaining":0},"9am":{"remaining":0}});
+    var hour = time.getHours() < 12 ? time.getHours()+'am':time.getHours()-12+'pm';
+    if(time.getHours()==12) hour = time.getHours()+'pm';
     const [slots, setSlots] = useState(0);
 
     useEffect(()=>{
         setSlots(0);
-        // console.log('schedule',schedule)
+        console.log('schedule',schedule)
+        console.log('hour',hour)
         // console.log('date',date)
         // console.log(schedule[date]);
-
-        for(let i=8; i<10; i++){
-            setSlots((prevState)=>prevState+schedule[date][`${i}am`].remaining)
+        if(time.getHours()>7&&time.getHours()<17){
+            setSlots(schedule[date][hour].remaining)
         }
-    }, [schedule,date])
+    }, [date,hour])
 
     return(
         <div>
-            On {date}, there are {slots} slots left;
+            On {date} {hour}, there are {slots} slots left;
         </div>
     )
 }

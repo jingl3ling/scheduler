@@ -3,14 +3,17 @@ import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import { getSchedule } from './redux/actions/scheduleActions';
 import Remain from './remainingSlots';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 export default function App(){
-    const [value, setValue] = useState(dayjs(new Date().toLocaleString()));
+    const date = new Date();
+    date.setMinutes(0);
+    const [value, setValue] = useState(dayjs(date.toLocaleString()));
     // const [date, setDate] = useState(dayjs(new Date().toLocaleDateString));
     var schedule = useSelector((state)=>state.schedule);
     const dispatch = useDispatch();
@@ -42,8 +45,17 @@ export default function App(){
             onChange={handleChange}
             renderInput={(params) => <TextField {...params} />}
             shouldDisableDate={disableWeekends}
-            disablePast={true}
-        /></LocalizationProvider>
+            // disablePast={true}
+            />
+            <TimePicker 
+            label="Time"
+            value={value}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} />}
+            minTime={dayjs().set('hour', 7)}
+            maxTime={dayjs().set('hour', 16)}
+            views={['hours']}/>
+        </LocalizationProvider>
         <Remain time={value}/>
         </div>
     )
