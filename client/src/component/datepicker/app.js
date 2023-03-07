@@ -9,14 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSchedule } from '../../redux/actions/scheduleActions';
 import Remain from '../../remainingSlots';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-
+import { addTime } from '../../redux/actions/reserveActions';
 
 export default function App(){
-    const date = new Date();
-    date.setMinutes(0);
+    const date = new Date("3/7/2023");
     const [value, setValue] = useState(dayjs(date.toLocaleString()));
-    // const [date, setDate] = useState(dayjs(new Date().toLocaleDateString));
-    var schedule = useSelector((state)=>state.schedule);
+    const [dayTime, setDayHour] = useState({date:"3/7/2023",time:"12am"})
     const dispatch = useDispatch();
 
     useEffect(()=>{
@@ -28,7 +26,15 @@ export default function App(){
     },[])
 
     const handleChange = (newValue) => {
-      setValue(newValue);
+        setValue(newValue);
+        const time = newValue.$d;
+        const date = time.toLocaleDateString();
+        var hour = time.getHours() < 12 ? time.getHours()+'am':time.getHours()-12+'pm';
+        if(time.getHours()==12) hour = time.getHours()+'pm';
+        dayTime.date=date;
+        dayTime.time=hour;
+        setDayHour({...dayTime})
+        dispatch(addTime(dayTime))
     };
 
     const disableWeekends = (date) => {
@@ -37,7 +43,8 @@ export default function App(){
     }
 
     return(
-        <div class="center">
+        <div>
+        <h2>Book your Visit</h2>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
             label="Date desktop"

@@ -6,10 +6,3 @@ export const getSchedule = (schedule) => {
         payload: schedule
     }
 }
-
-export const reserveTime = (schedule) => {
-    return{
-        type: ActionTypes.RESERVE,
-        payload: schedule
-    }
-}

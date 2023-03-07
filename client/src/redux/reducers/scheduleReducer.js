@@ -1,6 +1,5 @@
 import { ActionTypes } from "../constants/action-types";
 
-const today = new Date().toLocaleDateString();
 const initialState = {
     schedule: {    
         "3/7/2023":{
@@ -52,8 +51,6 @@ export const scheduleReducer = (state=initialState, {type, payload})=>{
     switch(type){
         case ActionTypes.GET_SCHEDULE:
             state.schedule = payload
-            return state
-        case ActionTypes.RESERVE:
             return state
         default:
             return state

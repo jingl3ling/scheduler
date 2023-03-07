@@ -1,7 +1,11 @@
 import React, {useState} from "react";
 import { TextField, Button, Select, MenuItem } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { addInfo } from "../../redux/actions/reserveActions";
 
 export default function App(){
+    var res = useSelector((state)=>state.reserve);
+    const dispatch = useDispatch();
     const [info, setInfo] = useState({
         name:'',
         number: '',
@@ -12,6 +16,8 @@ export default function App(){
         console.log(e.target.value);
         info[e.target.name] = e.target.value;
         setInfo({...info});
+        dispatch(addInfo(info)); //add Info to redux
+        console.log('res:',res);
     }
 
     const handleSubmit = (e) => {
@@ -20,11 +26,11 @@ export default function App(){
         info.name='';
         info.number='';
         info.quantity=1;
-        setInfo({...info});
+        setInfo({...info}); //setCurrent info
     }
 
     return(
-        <form class="center" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <TextField 
                 label="First Name" 
                 name="name" 

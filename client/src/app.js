@@ -2,14 +2,15 @@ import React from 'react';
 import Date from './component/datepicker/app';
 import Carrousel from './component/carousel/app';
 import ReserveForm from './component/reserveForm/app'
+import GetReservation from './component/getReservation/app'
 
 export default function App(){
     return(
-        <div>
+        <div class="center" >
             <Carrousel/>
-            <h1>Scheduler</h1>
             <Date/>
             <ReserveForm/>
+            <GetReservation/>
         </div>
     )
 }
