@@ -3,7 +3,7 @@ import { ActionTypes } from "../constants/action-types";
 const today = new Date().toLocaleDateString();
 const initialState = {
     schedule: {    
-        "3/3/2023":{
+        "3/7/2023":{
             "8am": {
                 "remaining": 10,
                 "visitors":[]

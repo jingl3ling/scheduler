@@ -1,0 +1,25 @@
+$font-stack: Helvetica, sans-serif;
+$primary-color: #333;
+
+body{
+    font: 100% $font-stack;
+    color: $primary-color;
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 300px;
+}
+
+.slider-container{
+    display: flex;
+    justify-content: center;
+}
+
+.center{
+    width:60%;
+    margin: auto
+}

@@ -6,9 +6,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker} from '@mui/x-date-pickers/DesktopDatePicker';
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
-import { getSchedule } from './redux/actions/scheduleActions';
-import Remain from './remainingSlots';
+import { getSchedule } from '../../redux/actions/scheduleActions';
+import Remain from '../../remainingSlots';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+
 
 export default function App(){
     const date = new Date();
@@ -36,7 +37,7 @@ export default function App(){
     }
 
     return(
-        <div>
+        <div class="center">
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
             label="Date desktop"
