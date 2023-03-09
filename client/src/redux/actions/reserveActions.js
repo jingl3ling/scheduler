@@ -13,3 +13,9 @@ export const addInfo = (info) => {
         payload: info
     }
 }
+
+export const reserve = () => {
+    return{
+        type: ActionTypes.RESERVE
+    }
+}

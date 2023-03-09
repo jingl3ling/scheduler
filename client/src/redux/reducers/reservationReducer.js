@@ -5,7 +5,8 @@ const initialState = {
     time:'',
     name:'',
     number:'',
-    quantity:1
+    quantity:1,
+    reservation:[]
 }
 
 export const reservationReducer = (state=initialState, {type, payload}) => {
@@ -19,6 +20,17 @@ export const reservationReducer = (state=initialState, {type, payload}) => {
             state.name=payload.name;
             state.number=payload.number;
             state.quantity=payload.quantity;
+            return {...state};
+        }
+        case(ActionTypes.RESERVE):{
+            const curr={
+                date:state.date,
+                time:state.time,
+                name:state.name,
+                number:state.number,
+                quantity:state.quantity,
+            }
+            state.reservation=[...state.reservation, curr];
             return {...state};
         }
         default:

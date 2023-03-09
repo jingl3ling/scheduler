@@ -1,7 +1,8 @@
 import React, {useState} from "react";
-import { TextField, Button, Select, MenuItem } from "@mui/material";
+import { TextField, Button, Select, MenuItem, Checkbox } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { addInfo } from "../../redux/actions/reserveActions";
+import { addInfo, reserve } from "../../redux/actions/reserveActions";
+import { useForm, Controller } from 'react-hook-form';
 
 export default function App(){
     var res = useSelector((state)=>state.reserve);
@@ -11,17 +12,34 @@ export default function App(){
         number: '',
         quantity: 1
     });
+    // const { control, register, handleSubmit, formState:{errors} } = useForm();
 
     const handleChange = (e) =>{
-        console.log(e.target.value);
-        info[e.target.name] = e.target.value;
+        console.log('value',e.target.value);
+        console.log('name',e.target.name);
+        if(e.target.name=='number'){
+            var onlyNums = e.target.value.replace(/[^0-9]/g, '');
+        }
+        if(e.target.name=='number'&&onlyNums.length<=10){
+            info[e.target.name] = onlyNums;
+            if(onlyNums.length==10){
+                info[e.target.name] = onlyNums.replace(
+                    /(\d{3})(\d{3})(\d{4})/,
+                    '($1) $2-$3'
+                );
+            }
+        }
+        else if(e.target.name!='number'){
+            info[e.target.name] = e.target.value;
+        }
         setInfo({...info});
         dispatch(addInfo(info)); //add Info to redux
-        console.log('res:',res);
     }
 
-    const handleSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
+        dispatch(reserve());
+        console.log('res:',res);
         console.log(info);
         info.name='';
         info.number='';
@@ -30,17 +48,34 @@ export default function App(){
     }
 
     return(
-        <form onSubmit={handleSubmit}>
-            <TextField 
+        <form onSubmit={onSubmit}>
+
+                <TextField
+                name="name"
                 label="First Name" 
-                name="name" 
                 value={info.name}
-                onChange={handleChange}/>
+                onChange={handleChange}
+                required
+            />
+            {/* <Controller
+                name="number"
+                control={control}
+                rules={{ required: "Number is required" }}
+                render={({ field }) => 
+                <TextField {...field}
+                label="Phone Number" 
+                value={info.number}
+                onChange={handleChange}
+                error={Boolean(errors.name)}
+                helperText={errors.name?.message}
+                />}
+            /> */}
             <TextField 
                 label="Phone Number" 
                 name="number"
                 value={info.number}
-                onChange={handleChange}/>
+                onChange={handleChange}
+                required/>
             <Select
                 value={info.quantity}
                 name="quantity"
