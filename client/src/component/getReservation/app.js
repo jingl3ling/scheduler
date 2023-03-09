@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { TextField, Button} from "@mui/material";
 import { useSelector } from 'react-redux';
+import Result from './result';
 import "../../app.scss"
 
 export default function App(){
@@ -59,24 +60,7 @@ export default function App(){
                 Get
             </Button>
         </form>
-        <table>
-            <tr>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Name</th>
-                <th>Number</th>
-                <th>Quantity</th>
-            </tr>
-            {myRes?.map(({date, time, name, number, quantity})=>(
-                <tr>
-                    <td>{date}</td> 
-                    <td>{time}</td>
-                    <td>{name}</td> 
-                    <td>{number}</td>
-                    <td>{quantity}</td>
-                </tr>
-            ))}
-        </table>
+        <Result myRes={myRes}/>
         </div>
     )
 }

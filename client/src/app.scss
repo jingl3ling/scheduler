@@ -28,6 +28,8 @@ table, td, th{
     border: 1px solid rgb(255, 255, 255);
     border-collapse: collapse;
     padding: 10px;
+    color: 333;
+    background-color: $light-purple;
 }
 
 table{
@@ -35,15 +37,12 @@ table{
     margin-top: 10px;
 }
 
-th {
-    background-color: #912ca0;
-    color: white;
-}
-
-td {
-    background-color: $light-purple;
-}
 
 .bookvisit{
     background-color: $light-purple;
+}
+
+.right{
+    position: absolute;
+    right: 0px;
 }

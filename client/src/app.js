@@ -8,6 +8,7 @@ export default function App(){
     return(
         <div class="center" >
             <Carrousel/>
+            <h2>Book your Visit</h2>
             <Date/>
             <ReserveForm/>
             <GetReservation/>

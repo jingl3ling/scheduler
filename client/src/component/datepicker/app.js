@@ -44,7 +44,6 @@ export default function App(){
 
     return(
         <div>
-        <h2>Book your Visit</h2>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
             label="Date desktop"
