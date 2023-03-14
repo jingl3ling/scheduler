@@ -19,9 +19,11 @@ export default function App(){
 
     useEffect(()=>{
         (async()=>{
-        const res = await axios.get("http://localhost:3000/exhibition1.json")
-        const data = await res.data;
-        dispatch(getSchedule(data));
+        // const res = await axios.get("http://localhost:9000/test")
+        const res = await fetch("/test")
+        // const data = await res.data;
+        console.log('data:',res);
+        // dispatch(getSchedule(data));
         })();
     },[])
 
