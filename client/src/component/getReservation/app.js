@@ -38,7 +38,7 @@ export default function App(){
     }
 
     return(
-        <div>
+        <div className='main'>
             <h2>Get your reservation</h2>
             <form onSubmit={handleSubmit}>
             <TextField 

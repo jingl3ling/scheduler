@@ -17,7 +17,7 @@ var hours=['8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm'];
 
         for(let hour of hours){
             await Schedule.create({
-                Date: new Date('3/7/2023'),
+                Date:'3/7/2023',
                 Time: hour,
                 Availability: 10,
                 Visitors: []

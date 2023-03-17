@@ -49,27 +49,13 @@ export default function App(){
 
     return(
         <form onSubmit={onSubmit}>
-
-                <TextField
+            <TextField
                 name="name"
                 label="First Name" 
                 value={info.name}
                 onChange={handleChange}
                 required
             />
-            {/* <Controller
-                name="number"
-                control={control}
-                rules={{ required: "Number is required" }}
-                render={({ field }) => 
-                <TextField {...field}
-                label="Phone Number" 
-                value={info.number}
-                onChange={handleChange}
-                error={Boolean(errors.name)}
-                helperText={errors.name?.message}
-                />}
-            /> */}
             <TextField 
                 label="Phone Number" 
                 name="number"
