@@ -3,5 +3,6 @@ export const ActionTypes = {
     ADD_TIME: "ADD_TIME",
     ADD_INFO: "ADD_INFO",
     RESERVE: "RESERVE",
-    CANCEL_RES: "CANCEL_RES"
+    CANCEL_RES: "CANCEL_RES",
+    SET_EVENT: "SET_EVENT"
 }

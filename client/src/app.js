@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './component/navBar/app'
+import CurrEvent from './component/currEvent/app'
 import Date from './component/datepicker/app';
 import Carrousel from './component/carousel/app';
-import ReserveForm from './component/reserveForm/app'
+import Reserve from './component/reserve/app'
 import GetReservation from './component/getReservation/app'
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
@@ -24,9 +25,9 @@ export default function App(){
         <ThemeProvider theme={theme}>
         <NavBar/>
             <Routes>
-            <Route exact path='/' element={<Carrousel/>}/>
+            <Route exact path='/' element={<CurrEvent/>}/>
             <Route exact path='/date' element={<Date/>}/>
-            <Route exact path='/reserve' element={<ReserveForm/>} />
+            <Route exact path='/reserve' element={<Reserve/>} />
             <Route exact path='/getReserve' element={<GetReservation/>} />
         </Routes>
         </ThemeProvider>

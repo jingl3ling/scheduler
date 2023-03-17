@@ -9,7 +9,7 @@ body{
 }
 
 .main{
-    width: 60%;
+    width: 70%;
     margin: auto;
 }
 
@@ -58,8 +58,30 @@ a{
     text-decoration: none;
 }
 
+.card{
+    height: 300px;
+    display: flex;
+    img{
+        width: 40%;
+    }
+    .card-body{
+        width: auto;
+        margin-left: 20px;
+        background-color: #F4F4F4;
+        padding: 10px;
+    }
+}
+
+.flex-box{
+    display:flex;
+    flex-wrap: nowrap;
+}
+
 @media screen and (max-width:600px){
     .main{
         width: 80%;
+    }
+    .flex-box{
+        flex-wrap: wrap;
     }
 }

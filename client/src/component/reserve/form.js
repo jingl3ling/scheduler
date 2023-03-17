@@ -48,6 +48,9 @@ export default function App(){
     }
 
     return(
+        <div>
+        <p>Reservation on: {res.date} {res.time}</p>
+        <h2>Your Information</h2>
         <form onSubmit={onSubmit}>
             <TextField
                 name="name"
@@ -80,5 +83,6 @@ export default function App(){
                 Reserve
             </Button>
         </form>
+        </div>
     )
 }
