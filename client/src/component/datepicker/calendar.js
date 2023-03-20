@@ -22,9 +22,9 @@ export default function App(){
     useEffect(()=>{
         (async()=>{
         // const res = await axios.get("http://localhost:9000/test")
-        const res = await fetch("/test")
-        // const data = await res.data;
-        console.log('data:',res);
+        const res = await fetch("http://localhost:9000/test")
+        const data = await res.json();
+        console.log('data:',data);
         // dispatch(getSchedule(data));
         })();
     },[])

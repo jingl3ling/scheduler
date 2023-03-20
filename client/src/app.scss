@@ -65,7 +65,7 @@ a{
         width: 40%;
     }
     .card-body{
-        width: auto;
+        width: 60%;
         margin-left: 20px;
         background-color: #F4F4F4;
         padding: 10px;
@@ -84,4 +84,8 @@ a{
     .flex-box{
         flex-wrap: wrap;
     }
+}
+
+.disabled{
+    display: none;
 }

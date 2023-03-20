@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import { TextField, Button, Select, MenuItem, Checkbox } from "@mui/material";
+import { TextField, Button, Select, MenuItem } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addInfo, reserve } from "../../redux/actions/reserveActions";
 import { useForm, Controller } from 'react-hook-form';
 
-export default function App(){
+export default function App({setLoading}){
     var res = useSelector((state)=>state.reserve);
     const dispatch = useDispatch();
     const [info, setInfo] = useState({
@@ -45,6 +45,7 @@ export default function App(){
         info.number='';
         info.quantity=1;
         setInfo({...info}); //setCurrent info
+        setLoading(true);
     }
 
     return(

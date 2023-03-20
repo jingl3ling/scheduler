@@ -16,6 +16,9 @@ const ScheduleSchema = new Schema({
             type:String
         },
         Phone:{
+            type:String
+        },
+        Quantity:{
             type:Number
         }
     }]
