@@ -4,5 +4,6 @@ export const ActionTypes = {
     ADD_INFO: "ADD_INFO",
     RESERVE: "RESERVE",
     CANCEL_RES: "CANCEL_RES",
-    SET_EVENT: "SET_EVENT"
+    SET_EVENT: "SET_EVENT",
+    STORE_AVAIL: "STORE_AVAIL"
 }

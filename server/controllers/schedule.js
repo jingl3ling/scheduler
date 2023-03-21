@@ -20,7 +20,7 @@ exports.reserve = async(req, res)=>{
     const date = req.query.date;
     const time = req.query.time;
     const visitor = {
-        FirstName:req.body.firstname,
+        FirstName:req.body.name,
         Phone: req.body.phone,
         Quantity: req.body.quantity
     }
@@ -40,7 +40,7 @@ exports.reserve = async(req, res)=>{
 }
 
 exports.getReserve = async(req, res)=>{
-    const firstname=req.body.firstname;
+    const firstname=req.body.name;
     const phone=req.body.phone;
     console.log(firstname, phone)
         var ans = [];

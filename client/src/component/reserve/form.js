@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { TextField, Button, Select, MenuItem } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { addInfo, reserve } from "../../redux/actions/reserveActions";
@@ -6,21 +6,28 @@ import { useForm, Controller } from 'react-hook-form';
 
 export default function App({setLoading}){
     var res = useSelector((state)=>state.reserve);
+    var avail = res.avail;
     const dispatch = useDispatch();
     const [info, setInfo] = useState({
         name:'',
-        number: '',
+        phone: '',
         quantity: 1
     });
+    const [quan_arr, setQuan_arr] = useState([]);
     // const { control, register, handleSubmit, formState:{errors} } = useForm();
 
+    useEffect(()=>{
+        for(let i=1; i<=avail; i++){
+            quan_arr.push(i);
+            setQuan_arr([...quan_arr]);
+        }
+    },[])
+
     const handleChange = (e) =>{
-        console.log('value',e.target.value);
-        console.log('name',e.target.name);
-        if(e.target.name=='number'){
+        if(e.target.name=='phone'){
             var onlyNums = e.target.value.replace(/[^0-9]/g, '');
         }
-        if(e.target.name=='number'&&onlyNums.length<=10){
+        if(e.target.name=='phone'&&onlyNums.length<=10){
             info[e.target.name] = onlyNums;
             if(onlyNums.length==10){
                 info[e.target.name] = onlyNums.replace(
@@ -29,20 +36,21 @@ export default function App({setLoading}){
                 );
             }
         }
-        else if(e.target.name!='number'){
+        else if(e.target.name!='phone'){
             info[e.target.name] = e.target.value;
         }
         setInfo({...info});
         dispatch(addInfo(info)); //add Info to redux
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault();
         dispatch(reserve());
-        console.log('res:',res);
-        console.log(info);
+        const result = await fetch(`http://localhost:9000/schedule/reserve/?date=${res.date}&time=${res.time}`,
+        {method:"PUT", headers:{"Content-Type":"application/json"},body:JSON.stringify(info)});
+        console.log('PUT result', result)
         info.name='';
-        info.number='';
+        info.phone='';
         info.quantity=1;
         setInfo({...info}); //setCurrent info
         setLoading(true);
@@ -62,8 +70,8 @@ export default function App({setLoading}){
             />
             <TextField 
                 label="Phone Number" 
-                name="number"
-                value={info.number}
+                name="phone"
+                value={info.phone}
                 onChange={handleChange}
                 required/>
             <Select
@@ -72,10 +80,9 @@ export default function App({setLoading}){
                 label="Quantity"
                 onChange={handleChange}
             >
-                <MenuItem value={1}>1</MenuItem>
-                <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={3}>3</MenuItem>
-                <MenuItem value={4}>4</MenuItem>
+                {quan_arr.map((quan,i)=>(
+                <MenuItem key={i} value={quan}>{quan}</MenuItem>
+                ))}
             </Select>
             <Button 
                 variant="contained" 

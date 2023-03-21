@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function App(){
     const ev = useSelector((state)=>state.event);
-    console.log('event:',ev)
     return(
         <div>
             <img src={ev.img}/>

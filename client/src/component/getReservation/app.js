@@ -6,11 +6,15 @@ import "../../app.scss"
 
 export default function App(){
     const [info, setInfo] = useState({name:"",number:""})
-    const [myRes, setMyRes] = useState([]);
+    const [myRes, setMyRes] = useState([{
+        date:'3/7/2023',
+        time:'8am',
+        name:'jing',
+        phone:'847-770-2907',
+        quantity: 1
+    }]);
 
     const reservation = useSelector((state)=>state.reserve.reservation);
-
-    console.log('resevations',reservation)
 
     const handleSubmit = (e) => {
         e.preventDefault();

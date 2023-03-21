@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { TextField, Button, Modal, Box, Select, MenuItem} from "@mui/material";
 import "../../app.scss"
 import Date from '../datepicker/app';
+import Dialogue from './dialogue';
 
 const style = {
     position: 'absolute',
@@ -17,9 +18,7 @@ const style = {
     pb: 3,
   };
 
-export default function Result(props){
-    const myRes = props.myRes;
-
+export default function Result({myRes}){
     const [open, setOpen] = React.useState(false);
     const [selected, setSelected] = useState({});
 

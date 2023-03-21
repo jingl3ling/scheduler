@@ -19,3 +19,10 @@ export const reserve = () => {
         type: ActionTypes.RESERVE
     }
 }
+
+export const storeAvail = (avail) => {
+    return{
+        type: ActionTypes.STORE_AVAIL,
+        payload: avail
+    }
+}

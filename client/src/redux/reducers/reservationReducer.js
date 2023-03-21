@@ -6,6 +6,7 @@ const initialState = {
     name:'',
     number:'',
     quantity:1,
+    avail:0,
     reservation:[]
 }
 
@@ -32,6 +33,10 @@ export const reservationReducer = (state=initialState, {type, payload}) => {
             }
             state.reservation=[...state.reservation, curr];
             return {...state};
+        }
+        case(ActionTypes.STORE_AVAIL):{
+            state.avail = payload;
+            return {...state}
         }
         default:
             return state;
