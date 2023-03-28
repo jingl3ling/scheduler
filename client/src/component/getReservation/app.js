@@ -1,70 +1,55 @@
 import React, {useState} from 'react';
-import { TextField, Button} from "@mui/material";
+import { TextField, Button, Select, MenuItem } from "@mui/material";
 import { useSelector } from 'react-redux';
+import Form from './form';
 import Result from './result';
 import "../../app.scss"
 
 export default function App(){
-    const [info, setInfo] = useState({name:"",number:""})
-    const [myRes, setMyRes] = useState([{
-        date:'3/7/2023',
-        time:'8am',
-        name:'jing',
-        phone:'847-770-2907',
-        quantity: 1
-    }]);
+    const [info, setInfo] = useState({name:"",phone:""})
+    const [events, setEvents] = useState([{
+        title: 'BIANCA BONDI',
+        img:'/img/gallery1.jpeg',
+        startDate: '3/7/2023',
+        endDate: '3/7/2023',
+        description: 
+        'site-specific installation including a bed with pillows and sheeting, saline pond, artificial vegetation, natural vegetation, coins, chest of drawers, circular mirror, glass, swan vase, rusted arrows, copper amphores and saltvariable dimensions'
+    },
+    {
+        title: 'BIANCA BONDI2',
+        img:'/img/gallery1.jpeg',
+        startDate: '3/7/2023',
+        endDate: '3/7/2023',
+        description: 
+        'site-specific installation including a bed with pillows and sheeting, saline pond, artificial vegetation, natural vegetation, coins, chest of drawers, circular mirror, glass, swan vase, rusted arrows, copper amphores and saltvariable dimensions'
+    }])
+    const [event, setEvent] = useState({title:''}); 
+    const [myRes, setMyRes] = useState([]);
 
-    const reservation = useSelector((state)=>state.reserve.reservation);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setMyRes(reservation.filter(res=>res.name==info.name))
-        info.name="";
-        info.number="";
-        setInfo({...info})
-    }
-
-    const handleChange = (e) => {
-        const onlyNums = e.target.value.replace(/[^0-9]/g, '');
-        if(e.target.name=='number'&&onlyNums.length<=10){
-            info[e.target.name] = onlyNums;
-            if(onlyNums.length==10){
-                info[e.target.name] = onlyNums.replace(
-                    /(\d{3})(\d{3})(\d{4})/,
-                    '($1) $2-$3'
-                );
-            }
-        }
-        else if(e.target.name!='number'){
-            info[e.target.name] = e.target.value;
-        }
-        setInfo({...info})
+    const handleChange=(e)=>{
+        setEvent(events.filter((ev)=>ev.title==e.target.value)[0])
+        console.log(event);
     }
 
     return(
         <div className='main'>
             <h2>Get your reservation</h2>
-            <form onSubmit={handleSubmit}>
-            <TextField 
-                label="First Name" 
-                name="name" 
-                value={info.name}
+            <div className='flex-box'>
+            <p>Select a event to continue </p>
+            <Select
+                value={event.title}
+                name="event"
+                label="event"
                 onChange={handleChange}
-                required/>
-            <TextField 
-                label="Phone Number" 
-                name="number"
-                value={info.number}
-                onChange={handleChange}
-                required/>
-            <Button 
-                variant="contained" 
-                color="secondary"
-                type="submit">
-                Get
-            </Button>
-        </form>
-        <Result myRes={myRes}/>
+            >
+                {events.map((event,i)=>(
+                <MenuItem key={i} value={event.title}>{event.title}</MenuItem>
+                ))}
+            </Select>
+            </div>
+
+        {event.title==''? '': <Form info={info} setInfo={setInfo} setMyRes={setMyRes}/>}
+        {myRes.length==0? '': <Result event={event} myRes={myRes}/>}
         </div>
     )
 }

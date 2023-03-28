@@ -40,8 +40,8 @@ exports.reserve = async(req, res)=>{
 }
 
 exports.getReserve = async(req, res)=>{
-    const firstname=req.body.name;
-    const phone=req.body.phone;
+    const firstname=req.query.name;
+    const phone=req.query.phone;
     console.log(firstname, phone)
         var ans = [];
         Schedule.find()
@@ -51,9 +51,11 @@ exports.getReserve = async(req, res)=>{
                     if(result[i].Visitors[j].FirstName==firstname && 
                         result[i].Visitors[j].Phone==phone){
                             const curr={
+                                id:result[i]._id,
                                 Date:result[i].Date,
                                 Time:result[i].Time,
-                                Quantity:result[i].Visitors[j].Quantity
+                                Quantity:result[i].Visitors[j].Quantity,
+                                res_id:result[i].Visitors[j]._id
                             }
                             ans.push(curr);
                             console.log(curr);
@@ -68,6 +70,12 @@ exports.getReserve = async(req, res)=>{
         })
 }
 
-exports.modifyReserve = (req, res)=>{
-    
+exports.modifyReserve = async(req, res)=>{
+    const id=new mongoose.Types.ObjectId(req.body.res_id);
+    await Schedule.findByIdAndUpdate(req.body.dt_id,{$pull:{Visitors:{_id:{$eq:id}}}}).exec();
+    await Schedule.findByIdAndUpdate(req.body.dt_id,{$inc:{Availability:req.body.quantity}});
+    // if(req.body.type=='update'){
+    //     //add new
+    // }
+    res.send('success');
 }

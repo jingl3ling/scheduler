@@ -35,6 +35,7 @@ export default function App(){
     },[value])
 
     const handleChange = (newValue) => {
+        console.log(newValue)
         setValue(newValue);
         const time = newValue.$d;
         const date = time.toLocaleDateString();
@@ -65,17 +66,19 @@ export default function App(){
                 <CalendarPicker
                     value={value}
                     onChange={handleChange}
-                    renderInput={(params) => <TextField {...params} />}/>
-                    <div>
-                <TimePicker 
-                label="Time"
-                value={value}
-                onChange={handleChange}
-                renderInput={(params) => <TextField {...params} />}
-                minTime={dayjs().set('hour', 7)}
-                maxTime={dayjs().set('hour', 16)}
-                views={['hours']}/>
-                <Button variant="contained" onClick={handleClick}>Continue</Button>
+                    minDate={date}
+                    // renderInput={(params) => <TextField {...params} />}
+                    />
+                <div className='flex-box-vert'>
+                    <TimePicker 
+                    label="Time"
+                    value={value}
+                    onChange={handleChange}
+                    renderInput={(params) => <TextField {...params} />}
+                    minTime={dayjs().set('hour', 7)}
+                    maxTime={dayjs().set('hour', 16)}
+                    views={['hours']}/>
+                    <Button variant="contained" onClick={handleClick}>Continue</Button>
                 </div>
                 </div>
             </LocalizationProvider>

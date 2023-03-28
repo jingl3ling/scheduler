@@ -59,8 +59,8 @@ export default function App({setLoading}){
     return(
         <div>
         <p>Reservation on: {res.date} {res.time}</p>
-        <h2>Your Information</h2>
-        <form onSubmit={onSubmit}>
+        <h3>Your Information</h3>
+        <form onSubmit={onSubmit} className="flex-box" autocomplete="off">
             <TextField
                 name="name"
                 label="First Name" 

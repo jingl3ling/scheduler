@@ -30,6 +30,11 @@ img{
     text-align: center;
 }
 
+.right{
+    position: absolute;
+    right: 0px;
+}
+
 table, td, th{
     border: 1px solid rgb(255, 255, 255);
     border-collapse: collapse;
@@ -48,11 +53,6 @@ table{
     background-color: $light-purple;
 }
 
-.right{
-    position: absolute;
-    right: 0px;
-}
-
 a{
     color: white;
     text-decoration: none;
@@ -61,6 +61,7 @@ a{
 .card{
     height: 300px;
     display: flex;
+    margin: 5vh;
     img{
         width: 40%;
     }
@@ -68,13 +69,25 @@ a{
         width: 60%;
         margin-left: 20px;
         background-color: #F4F4F4;
-        padding: 10px;
+        padding: 2em;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: center;
     }
 }
 
 .flex-box{
     display:flex;
     flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.flex-box-vert{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
 }
 
 @media screen and (max-width:600px){
@@ -83,6 +96,33 @@ a{
     }
     .flex-box{
         flex-wrap: wrap;
+    }
+
+    .card{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin: 5vh;
+        position: relative;
+        img{
+            flex: 1 1 auto;
+            height: 150px;
+            width: 100%;
+        }
+        .card-body{
+            width: calc(100% - 20px);
+            margin-left: 0px;
+            background-color: #F4F4F4;
+            position: relative;
+            flex: 1 1 auto;
+        }
+    }
+}
+
+@media screen and (max-width:900px){
+    a{
+        color: $primary-color;
+        text-decoration: none;
     }
 }
 

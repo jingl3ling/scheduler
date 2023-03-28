@@ -5,7 +5,7 @@ const scheduleController = require('../controllers/schedule');
 
 router.get('/', scheduleController.getAvail);
 router.put('/reserve', scheduleController.reserve);
-router.get('/reserve', scheduleController.getReserve);
-router.get('/modify', scheduleController.modifyReserve);
+router.get('/reserve/', scheduleController.getReserve);
+router.put('/modify', scheduleController.modifyReserve);
 
 module.exports=router;

@@ -17,6 +17,7 @@ export default function App({event}){
             <img src={event.img}/>
             <div className='card-body'>
                 <h3>{event.title}</h3>
+                <h4>{event.startDate}-{event.endDate}</h4>
                 <p>{event.description}</p>
             </div>
         </div>

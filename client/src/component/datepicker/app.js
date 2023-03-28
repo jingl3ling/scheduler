@@ -9,6 +9,7 @@ export default function App(){
             <img src={ev.img}/>
             <div className='main'>
                 <h1>{ev.title}</h1>
+                <h4>{ev.startDate}-{ev.endDate}</h4>
                 <h2>Select a date and time for your visit</h2>
                 <Calendar/>
             </div>
