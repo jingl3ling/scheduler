@@ -11,8 +11,11 @@ import {Button} from '@mui/material';
 import { addTime } from '../../redux/actions/reserveActions';
 import { useNavigate } from 'react-router-dom';
 import { storeAvail } from '../../redux/actions/reserveActions';
+import buttonHOC from './buttonHOC';
 
-export default function App(){
+var test = 0;
+
+function CalendarChild(){
     const date = new Date("3/7/2023");
     const [value, setValue] = useState(dayjs(date.toLocaleString()));
     const [dayTime, setDayHour] = useState({date:"3/7/2023",time:"12am"})
@@ -26,6 +29,8 @@ export default function App(){
         const data = await res.json();
         if(data!='err'){
             setAvail(data.availability);
+            test=1;
+            console.log(test);
             dispatch(storeAvail(data.availability));
         }
         else{
@@ -85,3 +90,8 @@ export default function App(){
         </div>
     )
 }
+
+console.log('test',test);
+
+const CalendarParent = buttonHOC(CalendarChild,{test:test});
+export {CalendarParent, CalendarChild};

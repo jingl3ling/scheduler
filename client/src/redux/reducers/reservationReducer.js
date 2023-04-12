@@ -4,7 +4,7 @@ const initialState = {
     date:'',
     time:'',
     name:'',
-    number:'',
+    phone:'',
     quantity:1,
     avail:0,
     reservation:[]
@@ -19,8 +19,8 @@ export const reservationReducer = (state=initialState, {type, payload}) => {
         }
         case(ActionTypes.ADD_INFO):{
             state.name=payload.name;
-            state.number=payload.number;
-            state.quantity=payload.quantity;
+            state.phone=payload.phone;
+            if(payload.quantity) state.quantity=payload.quantity;
             return {...state};
         }
         case(ActionTypes.RESERVE):{

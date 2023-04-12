@@ -1,7 +1,13 @@
 import React from 'react';
 import { TextField, Button} from "@mui/material";
+import { useDispatch, useSelector} from "react-redux";
+import { addInfo} from "../../redux/actions/reserveActions";
 
 export default function Form({info, setInfo, setMyRes}){
+    const dispatch = useDispatch();
+    var res = useSelector((state)=>state.reserve);
+    console.log(res);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch(`http://localhost:9000/schedule/reserve/?name=${info.name}&phone=${info.phone}`)
@@ -30,6 +36,7 @@ export default function Form({info, setInfo, setMyRes}){
             info[e.target.name] = e.target.value;
         }
         setInfo({...info})
+        dispatch(addInfo(info));
     }
 
     return(

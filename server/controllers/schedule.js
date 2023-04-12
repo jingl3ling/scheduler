@@ -5,6 +5,8 @@ exports.getAvail = async(req, res)=>{
     const date = req.query.date;
     const time = req.query.time;
 
+    console.log(date, time);
+
     try{
         const avail = await Schedule.find({$and:[{Time:{$eq:time}},{Date:{$eq:date}}]})
         const ans= {availability:avail[0].Availability}
@@ -17,8 +19,13 @@ exports.getAvail = async(req, res)=>{
 }
 
 exports.reserve = async(req, res)=>{
-    const date = req.query.date;
-    const time = req.query.time;
+    var date = req.query.date;
+    var time = req.query.time;
+
+    if(req.body.type){
+        date = req.body.date;
+        time = req.body.time;
+    }
     const visitor = {
         FirstName:req.body.name,
         Phone: req.body.phone,
@@ -74,8 +81,11 @@ exports.modifyReserve = async(req, res)=>{
     const id=new mongoose.Types.ObjectId(req.body.res_id);
     await Schedule.findByIdAndUpdate(req.body.dt_id,{$pull:{Visitors:{_id:{$eq:id}}}}).exec();
     await Schedule.findByIdAndUpdate(req.body.dt_id,{$inc:{Availability:req.body.quantity}});
-    // if(req.body.type=='update'){
-    //     //add new
-    // }
-    res.send('success');
+    if(req.body.type=='update'){
+        //add new
+        console.log('update');
+        const result = await this.reserve(req,res);
+        console.log(result);
+    }
+    else{res.send('success');}
 }

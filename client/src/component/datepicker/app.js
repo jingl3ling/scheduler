@@ -1,5 +1,5 @@
 import React from 'react';
-import Calendar from './calendar';
+import {CalendarParent} from './calendar';
 import { useDispatch, useSelector } from "react-redux";
 
 export default function App(){
@@ -11,7 +11,7 @@ export default function App(){
                 <h1>{ev.title}</h1>
                 <h4>{ev.startDate}-{ev.endDate}</h4>
                 <h2>Select a date and time for your visit</h2>
-                <Calendar/>
+                <CalendarParent/>
             </div>
         </div>
     )
